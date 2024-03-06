@@ -31,7 +31,8 @@ then
     cp -nR "$source_dir/$file_to_check" "$destination_dir/"
     cp "TestListExamples.java" "grading-area"
 else
-    echo "file not found"
+    echo "File not found"
+    echo "Score: 0/1"
     exit 1
 fi
 
@@ -42,7 +43,7 @@ javac -cp $CPATH *.java
 if [[ $? -ne 0 ]]
 then
     echo "The program failed to compile, see compile error above"
-    echo "Your score is 0%"
+    echo "Your score is 0/1"
     exit 1
 fi
 
@@ -53,7 +54,7 @@ lastline=$(cat junit.output.txt | tail -n 2 | head -n 1)
 checker=$(echo "$lastline" | cut -c1-2)
 if [[ $checker == "OK" ]]
 then
-    echo "Your score is 100%"
+    echo "Your score is 0/1"
     exit 0
 else
     tests=$(echo "$lastline" | cut -c12-12)
